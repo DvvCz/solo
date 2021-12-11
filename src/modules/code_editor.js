@@ -55,18 +55,18 @@ export class CodeEditor {
     if (!cSourceCode) {
       // TODO: Is it necessary to import a package outside on NPM?
       // cdnjs didn't have a "no-conflict" version, so we'll use jsdelivr
-      const CDN = 'https://cdn.jsdelivr.net/npm/ace-builds@1.3.3/src-min-noconflict';
+      const CDN = 'https://cdn.jsdelivr.net/npm/ace-builds@1.4.13/src-noconflict';
 
       // Now we tell ace to use the CDN locations to look for files
       ace.config.set('basePath', CDN);
 
       // Link to the div in blocklyc.html
       const code = ace.edit('code-propc');
-      code.setTheme('ace/theme/chrome');
+      code.setTheme('ace/theme/one_dark');
       code.getSession().setMode('ace/mode/c_cpp');
       code.getSession().setTabSize(2);
       code.$blockScrolling = Infinity;
-      code.setReadOnly(true);
+      code.setReadOnly(false);
 
       // if the project is a propc code-only project, enable code editing.
       if (boardType === 'propcfile') {

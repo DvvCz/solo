@@ -238,39 +238,37 @@ export function populateProjectBoardTypesUIElement(element, selected) {
     if (Object.prototype.hasOwnProperty.call(ProjectProfiles, board)) {
       if (board !== 'default') {
         // Use the experimental tag to show code-only view
-        if (board !== 'propcfile') {
-          if (board !== 'unknown') {
-            // Exclude the 'unknown' board type. It is used only when
-            // something has gone wrong during a project load operation
-            const name = ProjectProfiles[board].name;
-            const description = ProjectProfiles[board].description;
-            if (selected) {
-              if (name.toUpperCase() === selected.toUpperCase()) {
-                // The board type is the current project board type
-                element.append($('<option />')
-                    .attr('selected', 'selected')
-                    .val(name)
-                    .text(description));
-              } else {
-                // Implement conversion matrix
-                switch (selected.toUpperCase()) {
-                  case 'FLIP':
-                    // Flip can convert to all other types
-                    buildBoardTypeElement(element, name, description);
-                    break;
-
-                  case 'ACTIVITY-BOARD':
-                  case 'HEB':
-                  case 'HEB-WX':
-                    if (name === 'other') {
-                      buildBoardTypeElement(element, name, description);
-                    }
-                    break;
-                }
-              }
+        if (board !== 'unknown') {
+          // Exclude the 'unknown' board type. It is used only when
+          // something has gone wrong during a project load operation
+          const name = ProjectProfiles[board].name;
+          const description = ProjectProfiles[board].description;
+          if (selected) {
+            if (name.toUpperCase() === selected.toUpperCase()) {
+              // The board type is the current project board type
+              element.append($('<option />')
+                  .attr('selected', 'selected')
+                  .val(name)
+                  .text(description));
             } else {
-              buildBoardTypeElement(element, name, description);
+              // Implement conversion matrix
+              switch (selected.toUpperCase()) {
+                case 'FLIP':
+                  // Flip can convert to all other types
+                  buildBoardTypeElement(element, name, description);
+                  break;
+
+                case 'ACTIVITY-BOARD':
+                case 'HEB':
+                case 'HEB-WX':
+                  if (name === 'other') {
+                    buildBoardTypeElement(element, name, description);
+                  }
+                  break;
+              }
             }
+          } else {
+            buildBoardTypeElement(element, name, description);
           }
         }
       }
