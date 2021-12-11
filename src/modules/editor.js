@@ -31,6 +31,7 @@ import {initHtmlLabels, getHtmlText} from './blockly/language/en/page_text_label
 import {tooltipText} from './blockly/language/en/messages';
 import /* webpackPrefetch: true */ './blockly/generators/propc';
 import './blockly/generators/propc/base';
+import DarkTheme from '@blockly/theme-dark';
 
 // import './blockly/generators/propc/comms/wx_simple';
 
@@ -1165,9 +1166,10 @@ function initToolbox(profileName) {
     grid: {
       spacing: 20,
       length: 5,
-      colour: '#fbfbfb',
+      colour: '#282c34',
       snap: false,
     },
+    theme: DarkTheme
   };
 
   // Solo-485 This is a sledgehammer approach to updating the toolbox. If the

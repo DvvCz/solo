@@ -33,6 +33,7 @@
   },
   "homepage": "https://github.com/parallaxinc/solo#readme",
   "dependencies": {
+    "@blockly/theme-dark": "^2.0.6",
     "@mapbox/node-pre-gyp": "^1.0.7",
     "@sentry/browser": "^6.10.0",
     "@sentry/tracing": "^6.10.0",
