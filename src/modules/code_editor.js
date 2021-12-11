@@ -63,8 +63,13 @@ export class CodeEditor {
       // Link to the div in blocklyc.html
       const code = ace.edit('code-propc');
       code.setTheme('ace/theme/one_dark');
-      code.getSession().setMode('ace/mode/c_cpp');
-      code.getSession().setTabSize(2);
+      const session = code.getSession();
+      session.setMode('ace/mode/c_cpp');
+      session.setTabSize(2);
+      session.on('change', () => {
+        setPropCCode( session.getValue() );
+        cSourceCode = session.getValue();
+      });
       code.$blockScrolling = Infinity;
       code.setReadOnly(false);
 
