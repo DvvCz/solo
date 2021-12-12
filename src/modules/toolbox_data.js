@@ -2184,6 +2184,7 @@ function menuSystem() {
             </value>
         </block>
         <block type="custom_code_inline" include="activity-board,flip,heb,heb-wx,other,s3,"></block>
+        <block type="comment2" include="activity-board,flip,heb,heb-wx,other,s3,"></block>
         <block type="register_set" exclude="s3," ></block>
         <block type="register_get" exclude="s3," ></block>
         <block type="system_counter" exclude="s3," include="other,"></block>

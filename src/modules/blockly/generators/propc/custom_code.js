@@ -488,3 +488,33 @@ Blockly.propc.custom_code_inline = function() {
   if (this.getFieldValue('NEWLINE')) return source + '\n';
   return source;
 };
+
+/**
+ *
+ * @type {{
+ *  init: Blockly.Blocks.comment2.init,
+ *  helpUrl: string,
+ * }}
+ */
+Blockly.Blocks.comment2 = {
+  helpUrl: Blockly.MSG_CONTROL_HELPURL,
+  init: function() {
+    this.setTooltip("Adds a comment. Same as the control add comment block but looks better.");
+    this.setColour("#656B6B");
+    this.appendDummyInput('MAIN')
+        .appendField('//', 'TITLE')
+        .appendField(new Blockly.FieldTextInput(''), 'COMMENT_TEXT');
+    this.setPreviousStatement(true, 'Block');
+    this.setNextStatement(true, null);
+  }
+};
+
+/**
+ *
+ * @return {string}
+ */
+Blockly.propc.comment2 = function() {
+  const text = this.getFieldValue('COMMENT_TEXT');
+  if (!text) return '';
+  return '// ' + text.replace(/,+\s*$/g, '') + '\n';
+};
