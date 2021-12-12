@@ -455,3 +455,36 @@ Blockly.propc.custom_code_multiple = function() {
     return code;
   }
 };
+
+
+/**
+ *
+ * @type {{
+ *  init: Blockly.Blocks.custom_code_inline.init,
+ *  helpUrl: string,
+ * }}
+ */
+Blockly.Blocks.custom_code_inline = {
+  helpUrl: Blockly.MSG_CONTROL_HELPURL,
+  init: function() {
+    this.setTooltip("Add custom code. Check the box if it should not append a newline and a ;");
+    this.setColour(colorPalette.getColor('system'));
+    this.appendDummyInput('MAIN')
+        .appendField(new Blockly.FieldCheckbox('TRUE'), 'NEWLINE')
+        .appendField('code', 'TITLE')
+        .appendField(new Blockly.FieldTextInput(''), 'CODE_SRC');
+    this.setPreviousStatement(true, 'Block');
+    this.setNextStatement(true, null);
+  }
+};
+
+/**
+ *
+ * @return {string}
+ */
+Blockly.propc.custom_code_inline = function() {
+  const source = this.getFieldValue('CODE_SRC');
+  if (!source) return '';
+  if (this.getFieldValue('NEWLINE')) return source + '\n';
+  return source;
+};

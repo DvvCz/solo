@@ -67,8 +67,8 @@ export class CodeEditor {
       session.setMode('ace/mode/c_cpp');
       session.setTabSize(2);
       session.on('change', () => {
-        setPropCCode( session.getValue() );
-        cSourceCode = session.getValue();
+        //setPropCCode( session.getValue() );
+        //cSourceCode = session.getValue();
       });
       code.$blockScrolling = Infinity;
       code.setReadOnly(false);

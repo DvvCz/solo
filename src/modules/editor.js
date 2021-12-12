@@ -1546,7 +1546,7 @@ export function insertProject(project) {
  *Display the application name
  */
 async function showAppName() {
-  const html = 'BlocklyProp<br><strong>Solo</strong>';
+  const html = 'BlocklyProp<br><strong>Solo</strong> ++';
   $('#nav-logo').html(html);
 }
 
