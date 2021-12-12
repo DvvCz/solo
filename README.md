@@ -17,10 +17,10 @@ Much smaller and easier to use than the regular ``User defined code`` block.
 
 ![Code block](assets/code.png)
 
-__``comment`` block__
+__``comment`` block__  
 New comment block has been added, pretty much entirely cosmetic (saves space and is more obvious, however.)  
 Same as the ``Add 'comment'`` block, except gray and starts with ``//``  
 ![Comment](assets/comment.png)
 
 ## Note
-Big thanks to Parallax for making this open source, there are other *much* worse projects (looking at you code.org) that are unfortunately closed source so I cannot meddle with them and publish my changes.
+Thanks to Parallax for making this open source, there are other *much* worse projects (looking at you code.org) that are unfortunately closed source so are not able to be edited like this, or contributed toward.
