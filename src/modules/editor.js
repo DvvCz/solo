@@ -180,7 +180,14 @@ $(() => {
   if (backup) {
     // Load this project
     // Copy the stored temp project to the stored local project
-    const project = projectJsonFactory(JSON.parse(backup));
+    let json;
+    try {
+      json = JSON.parse(backup);
+    } catch(err) {
+      alert(`Malformed JSON, aborted loading: ${backup}`);
+      return;
+    }
+    const project = projectJsonFactory(json);
     // const currentProject = getProjectInitialState();
     // logConsoleMessage(`Current project and new project are equal?  ` +
     //     `${Project.compare(project, currentProject)}`);
