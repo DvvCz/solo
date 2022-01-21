@@ -41,22 +41,26 @@ import {APP_STAGE} from './constants';
  * </pre>
  * @param {string} sourceCode contains the source code to be compiled
  */
+
+// Use blockly host since we can't host the compiler on github.
+// Used to use window.location.hostname
+const BLOCKLY_HOST = "https://solo.parallax.com";
 export const cloudCompile = async (action, sourceCode) => {
   // Contact the container running cloud compiler. If the browser is connected
   // via https, direct the compile request to the same port and let the load
   // balancer direct the request to the compiler.
-  let postUrl = `https://${window.location.hostname}:443/single/prop-c/${action}`;
+  let postUrl = `https://${BLOCKLY_HOST}:443/single/prop-c/${action}`;
 
   // If running locally, assume that the compiler is available locally as
   // well, likely in a Docker container.
   if (window.location.protocol === 'http:') {
     // noinspection HttpUrlsUsage
-    postUrl = `http://${window.location.hostname}:5001/single/prop-c/${action}`;
+    postUrl = `http://${BLOCKLY_HOST}:5001/single/prop-c/${action}`;
   }
 
   if (APP_STAGE === 'TEST') {
     // noinspection HttpUrlsUsage
-    postUrl = `https://solo.parallax.com/single/prop-c/${action}`;
+    postUrl = `https://${BLOCKLY_HOST}/single/prop-c/${action}`;
   }
 
   // Post the code to the compiler API and await the results
