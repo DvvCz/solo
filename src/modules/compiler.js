@@ -44,7 +44,7 @@ import {APP_STAGE} from './constants';
 
 // Use blockly host since we can't host the compiler on github.
 // Used to use window.location.hostname
-const BLOCKLY_HOST = "https://solo.parallax.com";
+const BLOCKLY_HOST = "solo.parallax.com";
 export const cloudCompile = async (action, sourceCode) => {
   // Contact the container running cloud compiler. If the browser is connected
   // via https, direct the compile request to the same port and let the load
