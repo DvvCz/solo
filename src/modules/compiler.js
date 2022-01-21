@@ -65,7 +65,9 @@ export const cloudCompile = async (action, sourceCode) => {
 
   // Post the code to the compiler API and await the results
   try {
+    alert(`PostToCompiler: ${postUrl}`);
     const result = await postToCompiler(postUrl, sourceCode);
+    alert(`PostToCompiler, Result: ${result}`);
     if (result.success) {
       appendCompileConsoleMessage(
           `${result['compiler-output']}${result['compiler-error']}\n`);
