@@ -103,6 +103,7 @@ export const cloudCompile = async (action, sourceCode) => {
  */
 const postToCompiler = async function(url, sourceCode = '') {
   // Fetch options
+  alert(`Fetch ${url}, ${sourceCode}`);
   const fetchInit = {
     method: 'POST',
     mode: 'cors',
