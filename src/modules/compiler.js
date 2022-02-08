@@ -25,6 +25,33 @@ import {logConsoleMessage} from './utility';
 import {appendCompileConsoleMessage} from './blocklyc';
 import {APP_STAGE} from './constants';
 
+function request(url, opts = {}, onProgress) {
+	return new Promise(
+		(res, rej) => {
+			const xhr = new XMLHttpRequest();
+			xhr.open(opts.method || 'get', url);
+	
+			Object
+				.keys(opts.headers || {})
+				.forEach(
+					headerKey => {
+						xhr.setRequestHeader(headerKey, opts.headers[headerKey]);
+					}
+				);
+	
+			xhr.onload = e => res(e.target.responseText);
+	
+			xhr.onerror = rej;
+	
+			if (xhr.upload && onProgress) {
+				xhr.upload.onprogress = onProgress; // event.loaded / event.total * 100 ; //event.lengthComputable
+			}
+	
+			xhr.send(opts.body);
+		}
+	);
+}
+
 // noinspection HttpUrlsUsage
 /**
 * Submit a project's source code to the cloud compiler
@@ -106,37 +133,19 @@ export const cloudCompile = async (action, sourceCode) => {
 	const postToCompiler = async function(url, sourceCode = '') {
 		// Fetch options
 		alert(`Fetch ${url}, ${sourceCode}`);
-		const fetchInit = {
-			method: 'POST',
-			mode: 'cors',
-			cache: 'no-cache',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			redirect: 'follow',
-			referrerPolicy: 'no-referrer',
-			body: sourceCode,
-		};
-		
-		var url = "https://solo.parallax.com/single/prop-c/bin";
-		
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST", url);
-		
-		xhr.setRequestHeader("Content-Type", "application/json");
-		
-		xhr.onreadystatechange = function () {
-			if (xhr.readyState === 4) {
-				console.log(xhr.status);
-				console.log(xhr.responseText);
-			}
-		};
-		
-		xhr.send(data);
-		
+
 		try {
-			const res = await fetch(url, fetchInit);
-			return await res.json();
+			const res = await request(url, {
+				method: 'POST',
+				body: sourceCode,
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
+			console.log(`res: ${res}`);
+			const res_json = JSON.stringify(res);
+			console.log(`res_json: ${res_json}`);
+			return res_json;
 		} catch (err) {
 			logConsoleMessage(`Compiler error: ${err.message}`);
 		}
