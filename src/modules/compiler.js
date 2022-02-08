@@ -92,9 +92,7 @@ export const cloudCompile = async (action, sourceCode) => {
 	
 	// Post the code to the compiler API and await the results
 	try {
-		alert(`PostToCompiler: ${postUrl}`);
 		const result = await postToCompiler(postUrl, sourceCode);
-		alert(`PostToCompiler, Result: ${result}`);
 		if (result.success) {
 			appendCompileConsoleMessage(
 				`${result['compiler-output']}${result['compiler-error']}\n`);
@@ -102,7 +100,7 @@ export const cloudCompile = async (action, sourceCode) => {
 				// Something unexpected has happened while calling the compile service
 				if (result) {
 					logConsoleMessage(`Compiler service request failed`);
-					
+
 					const state = result.success;
 					let message = '\nError: Unable to compile the project.\n';
 					if (state === 'rejected') {
@@ -132,8 +130,6 @@ export const cloudCompile = async (action, sourceCode) => {
 	*/
 	const postToCompiler = async function(url, sourceCode = '') {
 		// Fetch options
-		alert(`Fetch ${url}, ${sourceCode}`);
-
 		try {
 			const res = await request(url, {
 				method: 'POST',
@@ -142,12 +138,9 @@ export const cloudCompile = async (action, sourceCode) => {
 					'Content-Type': 'application/json',
 				},
 			});
-			console.log(`res: ${res}`);
-			const res_json = JSON.stringify(res);
-			console.log(`res_json: ${res_json}`);
+			const res_json = JSON.parse(res);
 			return res_json;
 		} catch (err) {
 			logConsoleMessage(`Compiler error: ${err.message}`);
 		}
 	};
-	

@@ -71,7 +71,7 @@ export class CodeEditor {
         //cSourceCode = session.getValue();
       });
       code.$blockScrolling = Infinity;
-      code.setReadOnly(false);
+      code.setReadOnly(true);
 
       // if the project is a propc code-only project, enable code editing.
       if (boardType === 'propcfile') {
