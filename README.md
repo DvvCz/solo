@@ -1,4 +1,5 @@
 # Solo++
+> You might also be interested in [PropC-Online](https://github.com/DvvCz/PropC-Online), which lets you program in raw PropC with instant feedback using the monaco editor instead of blocks.
 
 My fork of [Parallax Inc's Solo Propeller C Blockly Editor](https://github.com/parallaxinc/solo).  
 This was made out of pretty much frustration with features when using this for a school project and lack of raw propeller C access.
@@ -21,6 +22,3 @@ __``comment`` block__
 New comment block has been added, pretty much entirely cosmetic (saves space and is more obvious, however.)  
 Same as the ``Add 'comment'`` block, except gray and starts with ``//``  
 ![Comment](assets/comment.png)
-
-## Note
-Thanks to Parallax for making this open source, there are other *much* worse projects (looking at you code.org) that are unfortunately closed source so are not able to be edited like this, or contributed toward.
