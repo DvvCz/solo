@@ -567,6 +567,7 @@ export function initTerminal() {
       document.getElementById('serial_console'),
 
       function(characterToSend) {
+        console.debug(characterToSend);
         if (clientService.type === serviceConnectionTypes.WS && clientService.activeConnection) {
           const msgToSend = {
             type: 'serial-terminal',
