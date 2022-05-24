@@ -568,6 +568,9 @@ export function initTerminal() {
 
       function(characterToSend) {
         console.debug(characterToSend);
+        if (test) {
+          test(characterToSend, clientService);
+        }
         if (clientService.type === serviceConnectionTypes.WS && clientService.activeConnection) {
           const msgToSend = {
             type: 'serial-terminal',
@@ -578,6 +581,7 @@ export function initTerminal() {
                 btoa(characterToSend) : characterToSend),
             action: 'msg',
           };
+          console.debug(msgToSend);
           clientService.activeConnection.send(JSON.stringify(msgToSend));
         }
       },
